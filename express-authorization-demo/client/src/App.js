@@ -8,7 +8,7 @@ import { api, setJwt } from './api/init'
 import Bookmark from './components/Bookmark'
 import SignIn from './components/SignIn'
 // import LogoutBtn from './components/LogoutBtn'
-import CreateBookmark from './components/CreateBookmark'
+// import CreateBookmark from './components/CreateBookmark'
 
 class App extends Component {
   state = {
@@ -111,7 +111,7 @@ class App extends Component {
               </div>
             )
           }} />
-          <Route path='bookmarks/new' createEntry={this.createEntry} component={CreateBookmark} />
+          {/* <Route path='bookmarks/new' createEntry={this.createEntry} component={CreateBookmark} /> */}
         </div>
       </BrowserRouter>
     );
