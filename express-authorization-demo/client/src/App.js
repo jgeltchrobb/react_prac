@@ -27,13 +27,15 @@ class App extends Component {
         email: form.elements.email.value,
         password: form.elements.password.value
       })
+      console.log(response, 'response')
+      setJwt(response.data.token)
       let bookmarks = await this.fetchBookmarks()
+      console.log(bookmarks)
       this.setState({
         token: response.data.token,
         bookmarks: bookmarks.data,
         loggedIn: true
       })
-      setJwt(response.data.token)
       localStorage.setItem('token', this.state.token);
     } catch (error) {
       this.setState({ loginError: error.message })
@@ -41,9 +43,7 @@ class App extends Component {
   }
 
   fetchBookmarks = async () => {
-    const bookmarks = await api.get(
-      '/bookmarks'
-    )
+    const bookmarks = await api.get('/bookmarks')
     return bookmarks
   }
 
@@ -92,6 +92,16 @@ class App extends Component {
                   <p>You logged in at: { new Date(tokenDetails.iat * 1000).toLocaleString() }</p>
                   <p>Your token expires at: { new Date(tokenDetails.exp * 1000).toLocaleString() }</p>
                   {/* <LogoutBtn logout={this.logout}/> */}
+                  <div>  
+                <h1>Bookmarks</h1>
+                <ul>
+                {
+                  bookmarks.map(
+                    bookmark => <Bookmark key={bookmark._id} {...bookmark} remove={this.remove} />
+                  )
+                }
+                </ul>
+              </div>
                 </React.Fragment>
               ) : (
                 <SignIn loginError={this.state.loginError} handleSignIn={this.handleSignIn} />
