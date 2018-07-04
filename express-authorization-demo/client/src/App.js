@@ -41,8 +41,8 @@ class App extends Component {
   }
 
   fetchBookmarks = async () => {
-    const bookmarks = await axios.get(
-      'http://localhost:3000/bookmarks'
+    const bookmarks = await api.get(
+      '/bookmarks'
     )
     return bookmarks
   }
