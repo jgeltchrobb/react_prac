@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 import { api, setJwt } from './api/init'
 import Bookmark from './components/Bookmark'
 import SignIn from './components/SignIn'
-import LogoutBtn from './components/LogoutBtn'
+// import LogoutBtn from './components/LogoutBtn'
 import CreateBookmark from './components/CreateBookmark'
 
 class App extends Component {
@@ -91,7 +91,7 @@ class App extends Component {
                   <h4>Welcome { tokenDetails.email }!</h4>
                   <p>You logged in at: { new Date(tokenDetails.iat * 1000).toLocaleString() }</p>
                   <p>Your token expires at: { new Date(tokenDetails.exp * 1000).toLocaleString() }</p>
-                  <LogoutBtn logout={this.logout}/>
+                  {/* <LogoutBtn logout={this.logout}/> */}
                 </React.Fragment>
               ) : (
                 <SignIn loginError={this.state.loginError} handleSignIn={this.handleSignIn} />
